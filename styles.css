@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+header {
+    background: #ff3b30;
+    color: white;
+    padding: 15px 0;
+    font-size: 24px;
+}
+main {
+    padding: 20px;
+}
+#sosButton {
+    background: #ff3b30;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+#sosButton:hover {
+    background: #d32f2f;
+}
+#map {
+    width: 100%;
+    height: 400px;
+    margin-top: 20px;
+}
+#locationStatus {
+    margin-top: 10px;
+    font-size: 18px;
+}
