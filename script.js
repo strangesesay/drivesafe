@@ -109,7 +109,6 @@ document.querySelector(".bg-red-500").addEventListener("click", () => {
     if (file) {
         const reader = new FileReader();
         reader.onload = () => {
-            const base64Image = reader.result.split(",")[1]; // Extract base64 data
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
             alert("Note: WhatsApp does not support direct image uploads via links. Please manually attach the image.");
@@ -137,4 +136,9 @@ document.getElementById("photoInput").addEventListener("change", (event) => {
         };
         reader.readAsDataURL(file);
     }
+});
+
+document.getElementById('sendButton').addEventListener('click', function() {
+    var whatsappLink = this.getAttribute('data-whatsapp');
+    window.location.href = whatsappLink; // Redirect to WhatsApp
 });

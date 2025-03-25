@@ -83,17 +83,64 @@
                     </div>
                     <!-- Additional Information Section -->
                     <div class="bg-white p-6 rounded-2xl shadow-xl">
-                        <h2 class="text-2xl font-bold mb-4">Additional Details</h2>
-                        <textarea class="w-full p-3 border rounded-lg" placeholder="Describe your emergency situation..." rows="4"></textarea>
-                        <div class="mt-4 flex space-x-4">
-                            <label for="photoInput" class="flex items-center space-x-2 text-blue-600 cursor-pointer">
-                                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18M3 8h18M5 12h14M3 16h18M5 20h14" />
-                                </svg>
-                                <span>Add Photo</span>
-                            </label>
-                            <input id="photoInput" type="file" accept="image/*" capture="environment" class="hidden" />
-                            <button class="bg-red-500 text-white px-4 py-2 rounded-lg">Send</button>
+                        <h2 class="text-2xl font-bold mb-4">Emergency Respondents</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Fire Force Card -->
+                            <div class="p-4 border rounded-lg shadow-md bg-red-50">
+                                <h3 class="text-lg font-bold text-red-600">Fire Force</h3>
+                                <p class="text-sm text-gray-700">Contact the fire department for emergencies.</p>
+                                <div class="mt-2">
+                                    <a href="https://wa.me/1234567890" target="_blank" class="inline-block text-blue-600 hover:text-blue-800">
+                                        Message on WhatsApp
+                                    </a>
+                                    <span class="mx-2">|</span>
+                                    <a href="tel:911" class="inline-block text-red-600 hover:text-red-800">
+                                        Call Now
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Police Card -->
+                            <div class="p-4 border rounded-lg shadow-md bg-blue-50">
+                                <h3 class="text-lg font-bold text-blue-600">Police</h3>
+                                <p class="text-sm text-gray-700">Reach out to the police for assistance.</p>
+                                <div class="mt-2">
+                                    <a href="https://wa.me/0987654321" target="_blank" class="inline-block text-blue-600 hover:text-blue-800">
+                                        Message on WhatsApp
+                                    </a>
+                                    <span class="mx-2">|</span>
+                                    <a href="tel:112" class="inline-block text-red-600 hover:text-red-800">
+                                        Call Now
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Ambulance Card -->
+                            <div class="p-4 border rounded-lg shadow-md bg-green-50">
+                                <h3 class="text-lg font-bold text-green-600">Ambulance</h3>
+                                <p class="text-sm text-gray-700">Contact ambulance services for medical emergencies.</p>
+                                <div class="mt-2">
+                                    <a href="https://wa.me/1122334455" target="_blank" class="inline-block text-blue-600 hover:text-blue-800">
+                                        Message on WhatsApp
+                                    </a>
+                                    <span class="mx-2">|</span>
+                                    <a href="tel:117" class="inline-block text-red-600 hover:text-red-800">
+                                        Call Now
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Road Assistance Card -->
+                            <div class="p-4 border rounded-lg shadow-md bg-yellow-50">
+                                <h3 class="text-lg font-bold text-yellow-600">Road Assistance</h3>
+                                <p class="text-sm text-gray-700">Get help for vehicle breakdowns or road issues.</p>
+                                <div class="mt-2">
+                                    <a href="https://wa.me/5566778899" target="_blank" class="inline-block text-blue-600 hover:text-blue-800">
+                                        Message on WhatsApp
+                                    </a>
+                                    <span class="mx-2">|</span>
+                                    <a href="tel:118" class="inline-block text-red-600 hover:text-red-800">
+                                        Call Now
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -141,8 +188,8 @@
                     <div>
                         <h3 class="text-lg font-semibold mb-4">Emergency Numbers</h3>
                         <div class="space-y-2">
-                            <p>Police: 911</p>
-                            <p>Ambulance: 911</p>
+                            <p>Police: 111</p>
+                            <p>Ambulance: 117</p>
                             <p>Fire: 911</p>
                         </div>
                     </div>
