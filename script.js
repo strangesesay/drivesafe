@@ -142,3 +142,66 @@ document.getElementById('sendButton').addEventListener('click', function() {
     var whatsappLink = this.getAttribute('data-whatsapp');
     window.location.href = whatsappLink; // Redirect to WhatsApp
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const carouselInner = document.getElementById("carouselInner");
+
+    let currentIndex = 0;
+
+    // Ensure the carouselInner width matches the number of slides
+    const slides = carouselInner.children;
+    const totalSlides = slides.length;
+
+    const updateCarousel = () => {
+        const offset = -currentIndex * 100; // Move by 100% for each slide
+        carouselInner.style.transform = `translateX(${offset}%)`;
+    };
+
+    // Auto-slide functionality
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalSlides; // Loop back to the first slide
+        updateCarousel();
+    }, 2000); // Slide every 2 seconds
+
+    // Emergency Type Buttons
+    const emergencyButtons = document.querySelectorAll(".bg-white .p-4");
+    const emergencyMessage = document.createElement("div");
+    emergencyMessage.id = "emergencyMessage";
+    emergencyMessage.style.marginTop = "20px";
+    emergencyMessage.style.fontSize = "18px";
+    emergencyMessage.style.fontWeight = "bold";
+    emergencyMessage.style.color = "#ff3b30";
+    document.querySelector(".bg-white.p-6").appendChild(emergencyMessage);
+
+    emergencyButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const emergencyType = button.textContent.trim();
+            emergencyMessage.textContent = `Contact the ${emergencyType}`;
+        });
+    });
+
+    const slidingCards = document.getElementById("slidingCards");
+    const totalCards = slidingCards.children.length;
+
+    currentIndex = 0;
+
+    const updateSlide = () => {
+        const offset = -currentIndex * 100; // Move by 100% for each card
+        slidingCards.style.transform = `translateX(${offset}%)`;
+        slidingCards.style.transition = "transform 0.5s ease-in-out"; // Ensure smooth transition
+    };
+
+    // Auto-slide functionality
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalCards; // Loop back to the first card
+        updateSlide();
+    }, 2000); // Slide every 2 seconds
+
+    // Hide intro text after 3 seconds
+    setTimeout(() => {
+        const introContainer = document.getElementById("introContainer");
+        if (introContainer) {
+            introContainer.style.display = "none";
+        }
+    }, 3000);
+});
