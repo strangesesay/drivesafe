@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
     emergencyButtons.forEach((button) => {
         button.addEventListener("click", () => {
             const emergencyType = button.textContent.trim();
-            emergencyMessage.textContent = `Contact the ${emergencyType}`;
+            emergencyMessage.textContent = `You selected: ${emergencyType}`;
         });
     });
 
