@@ -197,6 +197,9 @@ document.addEventListener("DOMContentLoaded", () => {
         updateSlide();
     }, 2000); // Slide every 2 seconds
 
+    // Ensure slidingCards container has the correct width
+    slidingCards.style.width = `${totalCards * 100}%`;
+
     // Hide intro text after 3 seconds
     setTimeout(() => {
         const introContainer = document.getElementById("introContainer");
@@ -204,4 +207,30 @@ document.addEventListener("DOMContentLoaded", () => {
             introContainer.style.display = "none";
         }
     }, 3000);
+
+    // Emergency Type Buttons
+    const emergencyDropdown = document.createElement("div");
+    emergencyDropdown.id = "emergencyDropdown";
+    emergencyDropdown.style.marginTop = "10px";
+    emergencyDropdown.style.padding = "10px";
+    emergencyDropdown.style.border = "1px solid #ccc";
+    emergencyDropdown.style.borderRadius = "5px";
+    emergencyDropdown.style.backgroundColor = "#f9f9f9";
+    emergencyDropdown.style.display = "none"; // Initially hidden
+    document.querySelector(".bg-white.p-6").appendChild(emergencyDropdown);
+
+    emergencyButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const emergencyType = button.textContent.trim();
+            emergencyDropdown.textContent = `You selected: ${emergencyType}`;
+            emergencyDropdown.style.display = "block"; // Show the dropdown
+        });
+    });
+
+    // Hide the dropdown when clicking outside
+    document.addEventListener("click", (event) => {
+        if (!event.target.closest(".bg-white .p-4")) {
+            emergencyDropdown.style.display = "none"; // Hide the dropdown
+        }
+    });
 });

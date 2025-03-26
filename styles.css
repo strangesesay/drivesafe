@@ -35,3 +35,8 @@ main {
     margin-top: 10px;
     font-size: 18px;
 }
+.card-size {
+    max-width: 500px; /* Increased width */
+    margin: 0 auto;
+    height: 300px; /* Added height for uniform card size */
+}
