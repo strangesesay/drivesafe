@@ -1,236 +1,264 @@
-function initMap() {
-    const mapElement = document.getElementById('map');
-    mapElement.style.height = "400px"; // Ensure the map container has a visible height
-    const locationStatus = document.getElementById('locationStatus');
-    const locationPermissionStatus = document.getElementById('locationPermissionStatus');
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const userLocation = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                };
-
-                const map = new google.maps.Map(mapElement, {
-                    center: userLocation,
-                    zoom: 15,
-                });
-
-                new google.maps.Marker({
-                    position: userLocation,
-                    map: map,
-                    title: "You are here",
-                });
-
-                locationStatus.textContent = `Location: Latitude ${userLocation.lat}, Longitude ${userLocation.lng}`;
-                locationPermissionStatus.textContent = "Location Services: Enabled";
-            },
-            () => {
-                locationPermissionStatus.textContent = "Location Services: Disabled or Permission Denied";
-            }
-        );
-    } else {
-        locationPermissionStatus.textContent = "Location Services: Not Supported by Browser";
-    }
-}
-
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-            const { latitude, longitude } = position.coords;
-            document.getElementById("locationStatus").textContent = `Location: ${latitude}, ${longitude}`;
-            const map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: latitude, lng: longitude },
-                zoom: 15,
-            });
-            new google.maps.Marker({
-                position: { lat: latitude, lng: longitude },
-                map,
-                title: "Your Location"
-            });
-        }, () => {
-            document.getElementById("locationStatus").textContent = "Location access denied.";
-        });
-    } else {
-        document.getElementById("locationStatus").textContent = "Geolocation is not supported by this browser.";
-    }
-}
-
-document.getElementById("sosButton").addEventListener("click", () => {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const { latitude, longitude } = position.coords;
-                const userLocation = { lat: latitude, lng: longitude };
-
-                // Update location status
-                document.getElementById("locationStatus").textContent = `Location: Latitude ${latitude}, Longitude ${longitude}`;
-
-                // Update map in the main emergency card
-                const map = new google.maps.Map(document.getElementById("map"), {
-                    center: userLocation,
-                    zoom: 15,
-                });
-
-                // Place marker
-                new google.maps.Marker({
-                    position: userLocation,
-                    map,
-                    title: "Your Location",
-                });
-
-                alert("SOS Alert Sent! Location shared with emergency contacts.");
-            },
-            () => {
-                // Handle location access denied
-                document.getElementById("locationStatus").textContent = "❌ Location access denied.";
-            }
-        );
-    } else {
-        // Handle geolocation not supported
-        document.getElementById("locationStatus").textContent = "❌ Geolocation not supported by this browser.";
-    }
-});
-
-document.querySelector(".bg-red-500").addEventListener("click", () => {
-    const additionalDetails = document.querySelector("textarea").value.trim();
-    const photoInput = document.getElementById("photoInput");
-    const file = photoInput.files[0];
-
-    if (!additionalDetails && !file) {
-        alert("Please provide additional details or upload a photo before sending.");
-        return;
-    }
-
-    const whatsappNumber = "+23279525354"; // Replace with the desired WhatsApp number
-    let message = `Emergency Details: ${additionalDetails || "No additional details provided."}`;
-
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-            alert("Note: WhatsApp does not support direct image uploads via links. Please manually attach the image.");
-            window.open(whatsappUrl, "_blank");
-        };
-        reader.readAsDataURL(file);
-    } else {
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-        window.open(whatsappUrl, "_blank");
-    }
-});
-
-document.getElementById("photoInput").addEventListener("change", (event) => {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-            const imagePreview = document.createElement("img");
-            imagePreview.src = reader.result;
-            imagePreview.alt = "Uploaded Photo";
-            imagePreview.className = "max-w-full h-auto rounded-lg shadow-md mt-4";
-            const additionalDetailsSection = document.querySelector(".bg-white.p-6");
-            additionalDetailsSection.appendChild(imagePreview);
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
-document.getElementById('sendButton').addEventListener('click', function() {
-    var whatsappLink = this.getAttribute('data-whatsapp');
-    window.location.href = whatsappLink; // Redirect to WhatsApp
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    const carouselInner = document.getElementById("carouselInner");
-
-    let currentIndex = 0;
-
-    // Ensure the carouselInner width matches the number of slides
-    const slides = carouselInner.children;
-    const totalSlides = slides.length;
-
-    const updateCarousel = () => {
-        const offset = -currentIndex * 100; // Move by 100% for each slide
-        carouselInner.style.transform = `translateX(${offset}%)`;
-    };
-
-    // Auto-slide functionality
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % totalSlides; // Loop back to the first slide
-        updateCarousel();
-    }, 2000); // Slide every 2 seconds
-
-    // Emergency Type Buttons
-    const emergencyButtons = document.querySelectorAll(".bg-white .p-4");
-    const emergencyMessage = document.createElement("div");
-    emergencyMessage.id = "emergencyMessage";
-    emergencyMessage.style.marginTop = "20px";
-    emergencyMessage.style.fontSize = "18px";
-    emergencyMessage.style.fontWeight = "bold";
-    emergencyMessage.style.color = "#ff3b30";
-    document.querySelector(".bg-white.p-6").appendChild(emergencyMessage);
-
-    emergencyButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            const emergencyType = button.textContent.trim();
-            emergencyMessage.textContent = `You selected: ${emergencyType}`;
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Emergency type buttons
+    const emergencyTypeBtns = document.querySelectorAll('.emergency-type-btn');
+    const emergencyForm = document.getElementById('emergency-form');
+    const cancelEmergencyBtn = document.getElementById('cancel-emergency');
+    
+    emergencyTypeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const emergencyType = this.getAttribute('data-type');
+            emergencyForm.classList.remove('hidden');
+            // Scroll to form
+            emergencyForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
     });
-
-    const slidingCards = document.getElementById("slidingCards");
-    const totalCards = slidingCards.children.length;
-
-    currentIndex = 0;
-
-    const updateSlide = () => {
-        const offset = -currentIndex * 100; // Move by 100% for each card
-        slidingCards.style.transform = `translateX(${offset}%)`;
-        slidingCards.style.transition = "transform 0.5s ease-in-out"; // Ensure smooth transition
-    };
-
-    // Auto-slide functionality
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % totalCards; // Loop back to the first card
-        updateSlide();
-    }, 2000); // Slide every 2 seconds
-
-    // Ensure slidingCards container has the correct width
-    slidingCards.style.width = `${totalCards * 100}%`;
-
-    // Hide intro text after 3 seconds
-    setTimeout(() => {
-        const introContainer = document.getElementById("introContainer");
-        if (introContainer) {
-            introContainer.style.display = "none";
+    
+    cancelEmergencyBtn.addEventListener('click', function() {
+        emergencyForm.classList.add('hidden');
+    });
+    
+    // Get location button
+    const getLocationBtn = document.getElementById('get-location-btn');
+    const emergencyLocation = document.getElementById('emergency-location');
+    
+    getLocationBtn.addEventListener('click', function() {
+        if (navigator.geolocation) {
+            getLocationBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-1"></i> Getting location...';
+            
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    emergencyLocation.value = `Lat: ${lat.toFixed(4)}, Lng: ${lng.toFixed(4)}`;
+                    getLocationBtn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> Location acquired';
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        getLocationBtn.innerHTML = '<i class="fas fa-location-arrow mr-1"></i> Use Current Location';
+                    }, 3000);
+                },
+                function(error) {
+                    console.error('Error getting location:', error);
+                    emergencyLocation.value = 'Unable to get location';
+                    getLocationBtn.innerHTML = '<i class="fas fa-exclamation-circle mr-1"></i> Error getting location';
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        getLocationBtn.innerHTML = '<i class="fas fa-location-arrow mr-1"></i> Use Current Location';
+                    }, 3000);
+                }
+            );
+        } else {
+            emergencyLocation.value = 'Geolocation not supported by this browser';
         }
-    }, 3000);
-
-    // Emergency Type Buttons
-    const emergencyDropdown = document.createElement("div");
-    emergencyDropdown.id = "emergencyDropdown";
-    emergencyDropdown.style.marginTop = "10px";
-    emergencyDropdown.style.padding = "10px";
-    emergencyDropdown.style.border = "1px solid #ccc";
-    emergencyDropdown.style.borderRadius = "5px";
-    emergencyDropdown.style.backgroundColor = "#f9f9f9";
-    emergencyDropdown.style.display = "none"; // Initially hidden
-    document.querySelector(".bg-white.p-6").appendChild(emergencyDropdown);
-
-    emergencyButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            const emergencyType = button.textContent.trim();
-            emergencyDropdown.textContent = `You selected: ${emergencyType}`;
-            emergencyDropdown.style.display = "block"; // Show the dropdown
+    });
+    
+    // Submit emergency form
+    const submitEmergencyBtn = document.getElementById('submit-emergency');
+    
+    submitEmergencyBtn.addEventListener('click', function() {
+        const emergencyDetails = document.querySelector('#emergency-form textarea').value;
+        const location = emergencyLocation.value;
+        
+        if (!emergencyDetails || !location) {
+            alert('Please provide emergency details and location');
+            return;
+        }
+        
+        this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+        
+        // Simulate sending data to server
+        setTimeout(() => {
+            alert('Emergency alert has been sent! Help is on the way.');
+            this.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Send Alert';
+            emergencyForm.classList.add('hidden');
+            document.querySelector('#emergency-form textarea').value = '';
+            emergencyLocation.value = '';
+        }, 2000);
+    });
+    
+    // Quiz functionality
+    const quizQuestions = [
+        {
+            question: "What should you do when approaching a yellow traffic light?",
+            options: [
+                "Speed up to beat the red light",
+                "Stop if it's safe to do so",
+                "Honk your horn and proceed",
+                "Slow down but keep going"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is the recommended following distance in good weather conditions?",
+            options: [
+                "1 second",
+                "2 seconds",
+                "3 seconds",
+                "4 seconds"
+            ],
+            answer: 2
+        },
+        {
+            question: "When should you use your hazard lights?",
+            options: [
+                "When driving in heavy rain",
+                "When parked illegally",
+                "When your vehicle is stopped and creating a hazard",
+                "When you're driving slowly"
+            ],
+            answer: 2
+        }
+    ];
+    
+    let currentQuestion = 0;
+    let score = 0;
+    const quizContainer = document.getElementById('quiz-container');
+    const quizQuestion = document.getElementById('quiz-question');
+    const quizOptions = document.getElementById('quiz-options');
+    const quizFeedback = document.getElementById('quiz-feedback');
+    const nextQuestionBtn = document.getElementById('next-question');
+    
+    function loadQuestion() {
+        const question = quizQuestions[currentQuestion];
+        quizQuestion.innerHTML = `<p class="font-medium">${question.question}</p>`;
+        
+        quizOptions.innerHTML = '';
+        question.options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.className = 'quiz-option bg-white p-3 rounded-lg shadow-sm hover:bg-blue-100 transition text-left';
+            button.textContent = option;
+            button.addEventListener('click', () => checkAnswer(index));
+            quizOptions.appendChild(button);
+        });
+        
+        quizFeedback.classList.add('hidden');
+        nextQuestionBtn.classList.add('hidden');
+    }
+    
+    function checkAnswer(selectedIndex) {
+        const question = quizQuestions[currentQuestion];
+        const options = quizOptions.querySelectorAll('.quiz-option');
+        
+        options.forEach((option, index) => {
+            option.disabled = true;
+            if (index === question.answer) {
+                option.classList.add('correct');
+            } else if (index === selectedIndex && index !== question.answer) {
+                option.classList.add('incorrect');
+            }
+        });
+        
+        if (selectedIndex === question.answer) {
+            quizFeedback.textContent = 'Correct! Well done.';
+            quizFeedback.className = 'p-3 rounded-lg mb-4 bg-green-100 text-green-800';
+            score++;
+        } else {
+            quizFeedback.textContent = `Incorrect. The correct answer is: ${question.options[question.answer]}`;
+            quizFeedback.className = 'p-3 rounded-lg mb-4 bg-red-100 text-red-800';
+        }
+        
+        quizFeedback.classList.remove('hidden');
+        nextQuestionBtn.classList.remove('hidden');
+    }
+    
+    nextQuestionBtn.addEventListener('click', function() {
+        currentQuestion++;
+        if (currentQuestion < quizQuestions.length) {
+            loadQuestion();
+        } else {
+            showQuizResults();
+        }
+    });
+    
+    function showQuizResults() {
+        quizQuestion.innerHTML = `<p class="font-medium">Quiz Complete!</p>`;
+        quizOptions.innerHTML = '';
+        quizFeedback.textContent = `You scored ${score} out of ${quizQuestions.length}!`;
+        quizFeedback.className = 'p-3 rounded-lg mb-4 bg-blue-100 text-blue-800';
+        quizFeedback.classList.remove('hidden');
+        nextQuestionBtn.classList.add('hidden');
+        
+        // Add retry button
+        const retryBtn = document.createElement('button');
+        retryBtn.className = 'bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition';
+        retryBtn.textContent = 'Try Again';
+        retryBtn.addEventListener('click', resetQuiz);
+        quizOptions.appendChild(retryBtn);
+    }
+    
+    function resetQuiz() {
+        currentQuestion = 0;
+        score = 0;
+        loadQuestion();
+    }
+    
+    // Load first question
+    loadQuestion();
+    
+    // Emergency floating button and modal
+    const emergencyFloatBtn = document.getElementById('emergency-float-btn');
+    const emergencyModal = document.getElementById('emergency-modal');
+    const closeEmergencyModal = document.getElementById('close-emergency-modal');
+    const emergencyModalBtns = document.querySelectorAll('.emergency-modal-btn');
+    
+    emergencyFloatBtn.addEventListener('click', function() {
+        emergencyModal.classList.remove('hidden');
+    });
+    
+    closeEmergencyModal.addEventListener('click', function() {
+        emergencyModal.classList.add('hidden');
+    });
+    
+    emergencyModalBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const emergencyType = this.getAttribute('data-type');
+            emergencyModal.classList.add('hidden');
+            
+            // Scroll to emergency section and open form
+            document.getElementById('emergency').scrollIntoView({ behavior: 'smooth' });
+            
+            // Simulate click on the corresponding emergency type button
+            setTimeout(() => {
+                document.querySelector(`.emergency-type-btn[data-type="${emergencyType}"]`).click();
+            }, 800);
         });
     });
-
-    // Hide the dropdown when clicking outside
-    document.addEventListener("click", (event) => {
-        if (!event.target.closest(".bg-white .p-4")) {
-            emergencyDropdown.style.display = "none"; // Hide the dropdown
+    
+    // Close modal when clicking outside
+    emergencyModal.addEventListener('click', function(e) {
+        if (e.target === emergencyModal) {
+            emergencyModal.classList.add('hidden');
         }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            }
+        });
     });
 });

@@ -3,268 +3,434 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drive Safe - Emergency Assistance</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>DriveSafe - Accident Prevention & Emergency Response</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <header>
-        <h1>Drive Safe</h1>
-    </header>
-     <div class="min-h-screen bg-gradient-to-br from-red-50 to-red-100">
-        <!-- Navigation Bar -->
-        <nav class="bg-white shadow-lg">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between h-16">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0 flex items-center">
-                            <svg class="h-8 w-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                            <span class="ml-2 text-xl font-bold text-gray-800">DriveSafe</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <button class="text-gray-600 hover:text-red-600">Emergency Contacts</button>
-                        <button class="text-gray-600 hover:text-red-600">History</button>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-car-crash text-red-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-800">DriveSafe</span>
                     </div>
                 </div>
-            </div>
-        </nav>
-        <!-- Travel Tips Section -->
-        <div class="bg-white p-6 rounded-2xl shadow-xl mt-8">
-            <h2 class="text-2xl font-bold mb-4">Travel Tips</h2>
-            <div id="travelTipsCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <!-- Tip 1 -->
-                    <div class="carousel-item active">
-                        <div class="p-4 border rounded-lg shadow-md bg-gray-50 card-size">
-                            <img src="assets/img/download (14).jpeg" alt="Check Your Vehicle" class="d-block w-100 h-48 object-cover rounded-md mb-4">
-                            <h3 class="text-lg font-bold text-gray-800">Check Your Vehicle</h3>
-                            <p class="text-sm text-gray-700">Ensure your vehicle is in good condition before starting your journey. Check tires, brakes, and fuel levels.</p>
-                        </div>
-                    </div>
-                    <!-- Tip 2 -->
-                    <div class="carousel-item">
-                        <div class="p-4 border rounded-lg shadow-md bg-gray-50 card-size">
-                            <img src="assets/img/download (15).jpeg" alt="Plan Your Route" class="d-block w-100 h-48 object-cover rounded-md mb-4">
-                            <h3 class="text-lg font-bold text-gray-800">Plan Your Route</h3>
-                            <p class="text-sm text-gray-700">Plan your route in advance and keep a map or GPS device handy to avoid getting lost.</p>
-                        </div>
-                    </div>
-                    <!-- Tip 3 -->
-                    <div class="carousel-item">
-                        <div class="p-4 border rounded-lg shadow-md bg-gray-50 card-size">
-                            <img src="assets/img/download (16).jpeg" alt="Stay Alert" class="d-block w-100 h-48 object-cover rounded-md mb-4">
-                            <h3 class="text-lg font-bold text-gray-800">Stay Alert</h3>
-                            <p class="text-sm text-gray-700">Avoid distractions while driving. Stay focused on the road and take breaks if you feel tired.</p>
-                        </div>
-                    </div>
-                    <!-- Tip 4 -->
-                    <div class="carousel-item">
-                        <div class="p-4 border rounded-lg shadow-md bg-gray-50">
-                            <img src="assets/img/images (5).jpeg" alt="Emergency Kit" class="d-block w-100 h-32 object-cover rounded-md mb-4">
-                            <h3 class="text-lg font-bold text-gray-800">Carry an Emergency Kit</h3>
-                            <p class="text-sm text-gray-700">Pack an emergency kit with essentials like a first-aid kit, flashlight, water, and snacks.</p>
-                        </div>
-                    </div>
-                    <!-- Tip 5 -->
-                    <div class="carousel-item">
-                        <div class="p-4 border rounded-lg shadow-md bg-gray-50">
-                            <img src="assets/img/download (17).jpeg" alt="Weather Updates" class="d-block w-100 h-32 object-cover rounded-md mb-4">
-                            <h3 class="text-lg font-bold text-gray-800">Check Weather Updates</h3>
-                            <p class="text-sm text-gray-700">Stay informed about the weather conditions along your route to avoid unexpected delays or hazards.</p>
-                        </div>
-                    </div>
-                    <!-- Tip 6 -->
-                    <div class="carousel-item">
-                        <div class="p-4 border rounded-lg shadow-md bg-gray-50">
-                            <img src="assets/img/road-forest.jpg" alt="Follow Traffic Rules" class="d-block w-100 h-32 object-cover rounded-md mb-4">
-                            <h3 class="text-lg font-bold text-gray-800">Follow Traffic Rules</h3>
-                            <p class="text-sm text-gray-700">Always obey traffic rules and speed limits to ensure a safe journey for yourself and others.</p>
-                        </div>
-                    </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#prevention" class="text-gray-600 hover:text-red-600 transition">Prevention</a>
+                    <a href="#emergency" class="text-gray-600 hover:text-red-600 transition">Emergency</a>
+                    <a href="#education" class="text-gray-600 hover:text-red-600 transition">Education</a>
+                    <a href="#contacts" class="text-gray-600 hover:text-red-600 transition">Contacts</a>
                 </div>
-                <!-- Carousel Controls -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#travelTipsCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#travelTipsCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
+                <button id="mobile-menu-button" class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
-        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Left Column - Emergency Actions -->
-                <div class="lg:col-span-2 space-y-6">
-                    <!-- Main Emergency Card -->
-                    
-                        <!-- YouTube Video -->
-                        <div class="aspect-w-16 aspect-h-9">
-                            <iframe 
-                                src="https://www.youtube.com/embed/S5fuzB-wJ1o" 
-                                title="Drive Safe Video" 
-                                class="w-full h-64 rounded-lg shadow-md" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                    
-                    <!-- Additional Information Section -->
-                    <div class="bg-white p-6 rounded-2xl shadow-xl">
-                         <!-- Emergency Type Selection -->
-                    <div class="bg-white p-6 rounded-2xl shadow-xl">
-                        <h2 class="text-2xl font-bold mb-4">Emergency Type</h2>
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                            <!-- Buttons for Emergency Types -->
-                            <button class="p-4 border-2 rounded-xl transition-all border-red-100 hover:bg-red-50 hover:border-red-500">
-                                <div class="text-center">
-                                    <span class="block text-lg font-medium text-gray-900">Fire</span>
-                                    
-                                </div>
-                            </button>
-                            <button class="p-4 border-2 rounded-xl transition-all border-red-100 hover:bg-red-50 hover:border-red-500">
-                                <div class="text-center">
-                                    <span class="block text-lg font-medium text-gray-900">Accident</span>
-                                    
-                                </div>
-                            </button>
-                            <button class="p-4 border-2 rounded-xl transition-all border-red-100 hover:bg-red-50 hover:border-red-500">
-                                <div class="text-center">
-                                    <span class="block text-lg font-medium text-gray-900">Police</span>
-                                    
-                                </div>
-                            </button>
-                            <button class="p-4 border-2 rounded-xl transition-all border-red-100 hover:bg-red-50 hover:border-red-500">
-                                <div class="text-center">
-                                    <span class="block text-lg font-medium text-gray-900">Break Down</span>
-                                    
-                                </div>
-                            </button>
-                            <!-- ...other buttons... -->
-                        </div>
-                    </div>
-                        <h2 class="text-2xl font-bold mb-4">Emergency Respondents</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <!-- Fire Force Card -->
-                            <div class="p-4 border rounded-lg shadow-md bg-red-50">
-                                <h3 class="text-lg font-bold text-red-600">Fire Force</h3>
-                                <p class="text-sm text-gray-700">Contact the fire department for emergencies.</p>
-                                <div class="mt-2">
-                                    <a href="https://wa.me/+23279525354" target="_blank" class="inline-block text-blue-600 hover:text-blue-800">
-                                        Message on WhatsApp
-                                    </a>
-                                    <span class="mx-2">|</span>
-                                    <a href="tel:111" class="inline-block text-red-600 hover:text-red-800">
-                                        Call Now
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Police Card -->
-                            <div class="p-4 border rounded-lg shadow-md bg-blue-50">
-                                <h3 class="text-lg font-bold text-blue-600">Police</h3>
-                                <p class="text-sm text-gray-700">Reach out to the police for assistance.</p>
-                                <div class="mt-2">
-                                    <a href="https://wa.me/0987654321" target="_blank" class="inline-block text-blue-600 hover:text-blue-800">
-                                        Message on WhatsApp
-                                    </a>
-                                    <span class="mx-2">|</span>
-                                    <a href="tel:112" class="inline-block text-red-600 hover:text-red-800">
-                                        Call Now
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Ambulance Card -->
-                            <div class="p-4 border rounded-lg shadow-md bg-green-50">
-                                <h3 class="text-lg font-bold text-green-600">Ambulance</h3>
-                                <p class="text-sm text-gray-700">Contact ambulance services for medical emergencies.</p>
-                                <div class="mt-2">
-                                    <a href="https://wa.me/1122334455" target="_blank" class="inline-block text-blue-600 hover:text-blue-800">
-                                        Message on WhatsApp
-                                    </a>
-                                    <span class="mx-2">|</span>
-                                    <a href="tel:117" class="inline-block text-red-600 hover:text-red-800">
-                                        Call Now
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Road Assistance Card -->
-                            <div class="p-4 border rounded-lg shadow-md bg-yellow-50">
-                                <h3 class="text-lg font-bold text-yellow-600">Road Assistance</h3>
-                                <p class="text-sm text-gray-700">Get help for vehicle breakdowns or road issues.</p>
-                                <div class="mt-2">
-                                    <a href="https://wa.me/5566778899" target="_blank" class="inline-block text-blue-600 hover:text-blue-800">
-                                        Message on WhatsApp
-                                    </a>
-                                    <span class="mx-2">|</span>
-                                    <a href="tel:118" class="inline-block text-red-600 hover:text-red-800">
-                                        Call Now
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Right Column - Additional Info -->
-                <div class="space-y-6">
-                    <!-- Quick Contacts -->
-                    <div class="bg-white p-6 rounded-2xl shadow-xl">
-                        <h2 class="text-xl font-bold mb-4">Emergency Contacts</h2>
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                <span>Fire Force</span>
-                                <a href="tel:111" class="text-red-600 hover:text-red-800">
-                                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                <span>SLRSA</span>
-                                <a href="tel:112" class="text-red-600 hover:text-red-800">
-                                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                <span>Police</span>
-                                <a href="tel:111" class="text-red-600 hover:text-red-800">
-                                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                    </svg>
-                                </a>
-                            </div>
-                            <!-- ...other contacts... -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white pb-4 px-4">
+            <a href="#prevention" class="block py-2 text-gray-600 hover:text-red-600 transition">Prevention</a>
+            <a href="#emergency" class="block py-2 text-gray-600 hover:text-red-600 transition">Emergency</a>
+            <a href="#education" class="block py-2 text-gray-600 hover:text-red-600 transition">Education</a>
+            <a href="#contacts" class="block py-2 text-gray-600 hover:text-red-600 transition">Contacts</a>
+        </div>
+    </nav>
 
-        <!-- Footer -->
-        <footer class="bg-gray-800 text-white mt-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div>
-                        <h3 class="text-lg font-semibold mb-4">Emergency Numbers</h3>
-                        <div class="space-y-2">
-                            <p>Police: 111</p>
-                            <p>Ambulance: 117</p>
-                            <p>Fire: 111</p>
-                        </div>
+    <!-- Hero Section -->
+    <section class="hero bg-gradient-to-r from-red-500 to-red-600 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Drive Safe, Arrive Safe</h1>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Your comprehensive solution for accident prevention and emergency response on the road.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#emergency" class="bg-white text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition shadow-lg">
+                    Emergency Assistance <i class="fas fa-phone-alt ml-2"></i>
+                </a>
+                <a href="#prevention" class="bg-transparent border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition">
+                    Safety Tips <i class="fas fa-lightbulb ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prevention Section -->
+    <section id="prevention" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Accident Prevention Tips</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tip 1 -->
+                <div class="prevention-card bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                    <div class="icon-box bg-red-100 text-red-600 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-car text-2xl"></i>
                     </div>
-                    <!-- ...other footer sections... -->
+                    <h3 class="text-xl font-semibold text-center mb-3">Vehicle Maintenance</h3>
+                    <p class="text-gray-700">Regularly check your tires, brakes, lights, and fluid levels to ensure your vehicle is in optimal condition.</p>
+                </div>
+                
+                <!-- Tip 2 -->
+                <div class="prevention-card bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                    <div class="icon-box bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-mobile-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Avoid Distractions</h3>
+                    <p class="text-gray-700">Put your phone away, avoid eating while driving, and focus solely on the road ahead.</p>
+                </div>
+                
+                <!-- Tip 3 -->
+                <div class="prevention-card bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                    <div class="icon-box bg-yellow-100 text-yellow-600 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-tachometer-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Speed Management</h3>
+                    <p class="text-gray-700">Always obey speed limits and adjust your speed according to road and weather conditions.</p>
+                </div>
+                
+                <!-- Tip 4 -->
+                <div class="prevention-card bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                    <div class="icon-box bg-green-100 text-green-600 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-bed text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Rest Well</h3>
+                    <p class="text-gray-700">Take breaks every 2 hours on long trips and never drive when you're feeling drowsy.</p>
+                </div>
+                
+                <!-- Tip 5 -->
+                <div class="prevention-card bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                    <div class="icon-box bg-purple-100 text-purple-600 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-umbrella text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Weather Awareness</h3>
+                    <p class="text-gray-700">Adjust your driving for rain, fog, or other adverse weather conditions by reducing speed and increasing following distance.</p>
+                </div>
+                
+                <!-- Tip 6 -->
+                <div class="prevention-card bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                    <div class="icon-box bg-indigo-100 text-indigo-600 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-seatbelt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Seatbelt Safety</h3>
+                    <p class="text-gray-700">Always wear your seatbelt and ensure all passengers are properly restrained before driving.</p>
                 </div>
             </div>
-        </footer>
+        </div>
+    </section>
+
+    <!-- Emergency Section -->
+    <section id="emergency" class="py-16 bg-red-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Emergency Assistance</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Emergency Type Selection -->
+                <div class="bg-white p-6 rounded-2xl shadow-xl">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Report an Emergency</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button class="emergency-type-btn p-4 border-2 rounded-xl transition-all border-red-100 hover:bg-red-50 hover:border-red-500" data-type="accident">
+                            <div class="text-center">
+                                <i class="fas fa-car-crash text-3xl text-red-600 mb-2"></i>
+                                <span class="block text-lg font-medium text-gray-900">Accident</span>
+                            </div>
+                        </button>
+                        <button class="emergency-type-btn p-4 border-2 rounded-xl transition-all border-red-100 hover:bg-red-50 hover:border-red-500" data-type="medical">
+                            <div class="text-center">
+                                <i class="fas fa-ambulance text-3xl text-red-600 mb-2"></i>
+                                <span class="block text-lg font-medium text-gray-900">Medical</span>
+                            </div>
+                        </button>
+                        <button class="emergency-type-btn p-4 border-2 rounded-xl transition-all border-red-100 hover:bg-red-50 hover:border-red-500" data-type="fire">
+                            <div class="text-center">
+                                <i class="fas fa-fire text-3xl text-red-600 mb-2"></i>
+                                <span class="block text-lg font-medium text-gray-900">Fire</span>
+                            </div>
+                        </button>
+                        <button class="emergency-type-btn p-4 border-2 rounded-xl transition-all border-red-100 hover:bg-red-50 hover:border-red-500" data-type="breakdown">
+                            <div class="text-center">
+                                <i class="fas fa-car-battery text-3xl text-red-600 mb-2"></i>
+                                <span class="block text-lg font-medium text-gray-900">Breakdown</span>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <!-- Emergency Form (hidden by default) -->
+                    <div id="emergency-form" class="hidden mt-6">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2">Emergency Details</label>
+                            <textarea class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" rows="3" placeholder="Describe the emergency..."></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2">Your Location</label>
+                            <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Or use current location" id="emergency-location">
+                            <button id="get-location-btn" class="mt-2 text-sm text-red-600 hover:text-red-800 flex items-center">
+                                <i class="fas fa-location-arrow mr-1"></i> Use Current Location
+                            </button>
+                        </div>
+                        <div class="flex justify-between">
+                            <button id="cancel-emergency" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition">
+                                Cancel
+                            </button>
+                            <button id="submit-emergency" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center">
+                                <i class="fas fa-paper-plane mr-2"></i> Send Alert
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Emergency Contacts -->
+                <div class="bg-white p-6 rounded-2xl shadow-xl">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Emergency Contacts</h3>
+                    <div class="space-y-4">
+                        <div class="contact-card p-4 border rounded-lg shadow-sm hover:shadow-md transition bg-red-50">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="bg-red-100 p-3 rounded-full mr-4">
+                                        <i class="fas fa-fire text-red-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Fire Department</h4>
+                                        <p class="text-sm text-gray-600">For fire emergencies</p>
+                                    </div>
+                                </div>
+                                <a href="tel:111" class="bg-red-600 text-white p-2 rounded-full hover:bg-red-700 transition">
+                                    <i class="fas fa-phone"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card p-4 border rounded-lg shadow-sm hover:shadow-md transition bg-blue-50">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                        <i class="fas fa-shield-alt text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Police</h4>
+                                        <p class="text-sm text-gray-600">For security emergencies</p>
+                                    </div>
+                                </div>
+                                <a href="tel:112" class="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition">
+                                    <i class="fas fa-phone"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card p-4 border rounded-lg shadow-sm hover:shadow-md transition bg-green-50">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="bg-green-100 p-3 rounded-full mr-4">
+                                        <i class="fas fa-ambulance text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Ambulance</h4>
+                                        <p class="text-sm text-gray-600">For medical emergencies</p>
+                                    </div>
+                                </div>
+                                <a href="tel:117" class="bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition">
+                                    <i class="fas fa-phone"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card p-4 border rounded-lg shadow-sm hover:shadow-md transition bg-yellow-50">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                                        <i class="fas fa-car text-yellow-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Road Assistance</h4>
+                                        <p class="text-sm text-gray-600">For vehicle breakdowns</p>
+                                    </div>
+                                </div>
+                                <a href="tel:118" class="bg-yellow-600 text-white p-2 rounded-full hover:bg-yellow-700 transition">
+                                    <i class="fas fa-phone"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Safety Education</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- Video Tutorial -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md">
+                    <h3 class="text-xl font-semibold mb-4">Defensive Driving Techniques</h3>
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/S5fuzB-wJ1o" title="Defensive Driving" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <p class="mt-4 text-gray-700">Learn essential defensive driving techniques to anticipate and avoid potential hazards on the road.</p>
+                </div>
+                
+                <!-- First Aid Tips -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md">
+                    <h3 class="text-xl font-semibold mb-4">Roadside First Aid Basics</h3>
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="First Aid" class="w-full h-64 object-cover rounded-lg mb-4">
+                    <p class="text-gray-700">Critical first aid steps to take while waiting for professional medical help to arrive at an accident scene.</p>
+                    <button class="mt-4 text-red-600 hover:text-red-800 font-medium flex items-center">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Safety Quiz -->
+            <div class="bg-blue-50 rounded-xl p-6 shadow-md">
+                <h3 class="text-xl font-semibold mb-4">Test Your Safety Knowledge</h3>
+                <div id="quiz-container">
+                    <div id="quiz-question" class="mb-4">
+                        <p class="font-medium">What should you do when approaching a yellow traffic light?</p>
+                    </div>
+                    <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                        <button class="quiz-option bg-white p-3 rounded-lg shadow-sm hover:bg-blue-100 transition text-left">
+                            Speed up to beat the red light
+                        </button>
+                        <button class="quiz-option bg-white p-3 rounded-lg shadow-sm hover:bg-blue-100 transition text-left">
+                            Stop if it's safe to do so
+                        </button>
+                        <button class="quiz-option bg-white p-3 rounded-lg shadow-sm hover:bg-blue-100 transition text-left">
+                            Honk your horn and proceed
+                        </button>
+                        <button class="quiz-option bg-white p-3 rounded-lg shadow-sm hover:bg-blue-100 transition text-left">
+                            Slow down but keep going
+                        </button>
+                    </div>
+                    <div id="quiz-feedback" class="hidden p-3 rounded-lg mb-4"></div>
+                    <button id="next-question" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition hidden">
+                        Next Question
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Kit Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Essential Emergency Kit</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                    <img src="https://images.unsplash.com/photo-1585598117791-876ce25c1884?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="First Aid Kit" class="w-full h-40 object-cover rounded-md mb-3 mx-auto">
+                    <h3 class="font-semibold mb-2">First Aid Kit</h3>
+                    <p class="text-sm text-gray-600">Bandages, antiseptics, pain relievers, and essential medications</p>
+                </div>
+                
+                <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                    <img src="https://images.unsplash.com/photo-1617196034183-421b4917c92d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Flashlight" class="w-full h-40 object-cover rounded-md mb-3 mx-auto">
+                    <h3 class="font-semibold mb-2">Flashlight</h3>
+                    <p class="text-sm text-gray-600">With extra batteries for nighttime emergencies</p>
+                </div>
+                
+                <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                    <img src="https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Reflective Triangle" class="w-full h-40 object-cover rounded-md mb-3 mx-auto">
+                    <h3 class="font-semibold mb-2">Warning Triangle</h3>
+                    <p class="text-sm text-gray-600">To alert other drivers in case of breakdown</p>
+                </div>
+                
+                <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                    <img src="https://images.unsplash.com/photo-1607623488995-85a7e38a960f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Jumper Cables" class="w-full h-40 object-cover rounded-md mb-3 mx-auto">
+                    <h3 class="font-semibold mb-2">Jumper Cables</h3>
+                    <p class="text-sm text-gray-600">For battery emergencies</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <button class="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition shadow-lg flex items-center mx-auto">
+                    <i class="fas fa-download mr-2"></i> Download Complete Checklist
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacts" class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">About DriveSafe</h3>
+                    <p class="text-gray-400">Providing accident prevention education and quick emergency response services to make roads safer for everyone.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#prevention" class="text-gray-400 hover:text-white transition">Prevention Tips</a></li>
+                        <li><a href="#emergency" class="text-gray-400 hover:text-white transition">Emergency Services</a></li>
+                        <li><a href="#education" class="text-gray-400 hover:text-white transition">Safety Education</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">+232 123 456 789</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">info@drivesafe.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">Freetown, Sierra Leone</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 DriveSafe. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Emergency Floating Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button id="emergency-float-btn" class="bg-red-600 text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition animate-pulse">
+            <i class="fas fa-exclamation-triangle text-2xl"></i>
+        </button>
     </div>
-    <script src="script.js"></script>
+
+    <!-- Emergency Modal -->
+    <div id="emergency-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-red-600">Emergency Assistance</h3>
+                <button id="close-emergency-modal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="mb-4">What type of emergency are you experiencing?</p>
+            <div class="grid grid-cols-2 gap-3 mb-4">
+                <button class="emergency-modal-btn p-3 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition" data-type="accident">
+                    <i class="fas fa-car-crash mr-2"></i> Accident
+                </button>
+                <button class="emergency-modal-btn p-3 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition" data-type="medical">
+                    <i class="fas fa-ambulance mr-2"></i> Medical
+                </button>
+                <button class="emergency-modal-btn p-3 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition" data-type="fire">
+                    <i class="fas fa-fire mr-2"></i> Fire
+                </button>
+                <button class="emergency-modal-btn p-3 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition" data-type="breakdown">
+                    <i class="fas fa-car-battery mr-2"></i> Breakdown
+                </button>
+            </div>
+            <p class="text-sm text-gray-600">Select an option to proceed with emergency assistance.</p>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
